@@ -8,7 +8,7 @@ endif
 
 let g:colors_name = "abyss"
 
-let s:underline = "underline,"
+let s:underline = "underline"
 let s:italic = "italic,"
 let s:bold = "bold,"
 let s:undercurl = "undercurl,"
