@@ -185,3 +185,12 @@ call s:hi("Debug", s:darkgrey, "", "", "", "", "")
 call s:hi("Error", s:red, "", "", "", s:is_undercurl_enabled, "")
 call s:hi("Ignore", s:darkgrey, "", "", "", "", "")
 " }}}
+
+" GITCOMMIT: {{{
+call s:hi("gitcommitFirstLine", s:heavyyellow, "", "", "", s:is_underline_enabled, "")
+call s:hi("gitcommitSummary", s:heavyyellow, "", "", "", s:is_underline_enabled, "")
+call s:hi("gitcommitComment", s:lowgrey, "", "", "", s:is_italic_comments_enabled, "")
+call s:hi("gitcommitHeader", s:heavyyellow, "", "", "", s:is_underline_enabled, "")
+call s:hi("gitcommitBranch", s:pink, "", "", "", "", "")
+call s:hi("gitcommitSelectedType", s:yellow, "", "", "", "", "")
+" }}}
