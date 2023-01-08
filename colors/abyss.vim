@@ -194,3 +194,10 @@ call s:hi("gitcommitHeader", s:heavyyellow, "", "", "", s:is_underline_enabled, 
 call s:hi("gitcommitBranch", s:pink, "", "", "", "", "")
 call s:hi("gitcommitSelectedType", s:yellow, "", "", "", "", "")
 " }}}
+
+" EditorConfig: {{{
+call s:hi("dosiniHeader", s:lowgrey, "", "", "", "", "")
+call s:hi("dosiniLabel", s:lowgrey, "", "", "", "", "")
+call s:hi("dosiniNumber", s:pink, "", "", "", "", "")
+call s:hi("dosiniValue", s:pink, "", "", "", "", "")
+" }}}
