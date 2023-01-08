@@ -189,9 +189,10 @@ call s:hi("Ignore", s:darkgrey, "", "", "", "", "")
 " GITCOMMIT: {{{
 call s:hi("gitcommitFirstLine", s:heavyyellow, "", "", "", s:is_underline_enabled, "")
 call s:hi("gitcommitSummary", s:heavyyellow, "", "", "", s:is_underline_enabled, "")
-call s:hi("gitcommitComment", s:lowgrey, "", "", "", s:is_italic_comments_enabled, "")
+call s:hi("gitcommitComment", s:midblue, "", "", "", s:is_italic_comments_enabled, "")
 call s:hi("gitcommitHeader", s:heavyyellow, "", "", "", s:is_underline_enabled, "")
 call s:hi("gitcommitBranch", s:pink, "", "", "", "", "")
+call s:hi("gitcommitOnBranch", s:midblue, "", "", "", s:is_italic_comments_enabled, "")
 call s:hi("gitcommitSelectedType", s:yellow, "", "", "", "", "")
 " }}}
 
