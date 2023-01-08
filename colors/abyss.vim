@@ -202,3 +202,13 @@ call s:hi("dosiniLabel", s:lowgrey, "", "", "", "", "")
 call s:hi("dosiniNumber", s:pink, "", "", "", "", "")
 call s:hi("dosiniValue", s:pink, "", "", "", "", "")
 " }}}
+
+" TMUX: {{{
+call s:hi("tmuxCommands", s:purple, "", "", "", "", "")
+call s:hi("tmuxFlags", s:lowgrey, "", "", "", "", "")
+call s:hi("tmuxOptions", s:yellow, "", "", "", "", "")
+call s:hi("tmuxString", s:darkgreen, "", "", "", "", "")
+call s:hi("tmuxFormatString", s:lightgrey, "", "", "", "", "")
+call s:hi("tmuxEnums", s:pink, "", "", "", "", "")
+call s:hi("tmuxNumber", s:pink, "", "", "", "", "")
+" }}}
