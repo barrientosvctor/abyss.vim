@@ -186,6 +186,48 @@ call s:hi("Error", s:red, "", "", "", s:is_undercurl_enabled, "")
 call s:hi("Ignore", s:darkgrey, "", "", "", "", "")
 " }}}
 
+" VIM SCRIPT: {{{
+call s:hi("vimLineComment", s:midblue, "", "", "", s:is_italic_comments_enabled, "")
+call s:hi("vimCommentTitle", s:heavyyellow, "", "", "", s:is_italic_comments_enabled . s:is_underline_enabled, "")
+call s:hi("vimCommentTitle", s:heavyyellow, "", "", "", s:is_italic_comments_enabled . s:is_underline_enabled, "")
+
+call s:hi("vimIsCommand", s:purple, "", "", "", "", "")
+call s:hi("vimCommand", s:purple, "", "", "", "", "")
+call s:hi("vimMap", s:purple, "", "", "", "", "")
+call s:hi("vimUserCmd", s:purple, "", "", "", "", "")
+
+call s:hi("vimNotFunc", s:fg, "", "", "", "", "")
+call s:hi("vimFunc", s:yellow, "", "", "", "", "")
+call s:hi("vimUserFunc", s:yellow, "", "", "", "", "")
+call s:hi("vimFuncName", s:yellow, "", "", "", "", "")
+call s:hi("vimFuncBody", s:yellow, "", "", "", "", "")
+call s:hi("vimFunction", s:yellow, "", "", "", "", "")
+call s:hi("vimFuncSID", s:yellow, "", "", "", "", "")
+call s:hi("vimFuncKey", s:purple, "", "", "", "", "")
+call s:hi("vimFuncVar", s:shinyblue, "", "", "", s:is_italic_enabled, "")
+
+call s:hi("vimLet", s:fg, "", "", "", "", "")
+call s:hi("vimVar", s:shinyblue, "", "", "", s:is_italic_enabled, "")
+
+call s:hi("vimParenSep", s:fg, "", "", "", "", "")
+call s:hi("vimOperParen", s:fg, "", "", "", "", "")
+
+call s:hi("vimString", s:darkgreen, "", "", "", "", "")
+
+call s:hi("vimFTOption", s:heavyyellow, "", "", "", "", "")
+call s:hi("vimSynType", s:heavyyellow, "", "", "", "", "")
+call s:hi("vimExecute", s:heavyyellow, "", "", "", "", "")
+
+call s:hi("vimOption", s:fg, "", "", "", "", "")
+
+call s:hi("vimMapMod", s:lowgrey, "", "", "", "", "")
+call s:hi("vimBracket", s:lowgrey, "", "", "", "", "")
+call s:hi("vimMapModKey", s:yellow, "", "", "", "", "")
+
+call s:hi("vimSet", s:fg, "", "", "", "", "")
+call s:hi("vimSetEqual", s:fg, "", "", "", "", "")
+" }}}
+
 " GITCOMMIT: {{{
 call s:hi("gitcommitFirstLine", s:heavyyellow, "", "", "", s:is_underline_enabled, "")
 call s:hi("gitcommitSummary", s:heavyyellow, "", "", "", s:is_underline_enabled, "")
