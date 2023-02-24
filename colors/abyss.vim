@@ -11,34 +11,41 @@ let g:colors_name = "abyss"
 " Attributes: {{{
 let attrs = abyss#getAttributes()
 
-let s:bold = attrs.attr_bold
-let s:italic = attrs.attr_italic
-let s:undercurl = attrs.attr_undercurl
-let s:underline = attrs.attr_underline
+let s:attr_bold = attrs.attr_bold
+let s:attr_italic = attrs.attr_italic
+let s:attr_undercurl = attrs.attr_undercurl
+let s:attr_underline = attrs.attr_underline
+let s:attr_none = attrs.attr_none
+" }}}
+
+" SP: {{{
+let sp = abyss#getSP()
+
+let s:sp_none = sp.sp_none
 " }}}
 
 " TODO: adaptar categoría 'config' a función abyss#getSchemeColors()
 
 " Config: {{{
 " -- Italic
-let g:abyss_italic = get(g:, "abyss_italic", 0)
-let s:is_italic_enabled = (g:abyss_italic == 0) ? ["NONE", "NONE"] : get(s:, "italic")
+let g:abyss_italic = get(g:, "abyss_italic", 0) " disabled per default (0)
+let s:is_italic_enabled = (g:abyss_italic == 0) ? get(s:, "attr_none") : get(s:, "attr_italic")
 
 " -- Italic comments
-let g:abyss_italic_comments = get(g:, "abyss_italic_comments", 1) " enabled per default
-let s:is_italic_comments_enabled = (g:abyss_italic_comments == 0) ? ["NONE", "NONE"] : get(s:, "italic")
+let g:abyss_italic_comments = get(g:, "abyss_italic_comments", 1) " enabled per default (1)
+let s:is_italic_comments_enabled = (g:abyss_italic_comments == 0) ? get(s:, "attr_none") : get(s:, "attr_italic")
 
 " -- Bold
 let g:abyss_bold = get(g:, "abyss_bold", 0)
-let s:is_bold_enabled = (g:abyss_bold == 0) ? ["NONE", "NONE"] : get(s:, "bold")
+let s:is_bold_enabled = (g:abyss_bold == 0) ? get(s:, "attr_none") : get(s:, "attr_bold")
 
 " -- Underline
 let g:abyss_underline = get(g:, "abyss_underline", 0)
-let s:is_underline_enabled = (g:abyss_underline == 0) ? ["NONE", "NONE"] : get(s:, "underline")
+let s:is_underline_enabled = (g:abyss_underline == 0) ? get(s:, "attr_none") : get(s:, "attr_underline")
 
 " -- Undercurl
 let g:abyss_undercurl = get(g:, "abyss_undercurl", 0)
-let s:is_undercurl_enabled = (g:abyss_undercurl == 0) ? ["NONE", "NONE"] : get(s:, "undercurl")
+let s:is_undercurl_enabled = (g:abyss_undercurl == 0) ? get(s:, "attr_none") : get(s:, "attr_undercurl")
 " }}}
 
 " Colors: {{{
@@ -69,48 +76,43 @@ let s:white = colors.white
 let s:black = colors.black
 
 let s:none = colors.none
-
-"let s:bg = "#000c18"
-"let s:fg = "#6688cc"
-"let s:darkgreen = "#22aa44"
-"let s:green = "#44cb46"
-"let s:darkblue = "#082050"
-"let s:purple = "#9966b8"
-"let s:pink = "#f280d0"
-"let s:lightgrey = "#80A2B7"
-"let s:lowgrey = "#406385"
-"let s:darkgrey = "#225588"
-"let s:midblue = "#384887"
-"let s:shinyblue = "#2277ff"
-"let s:red = "#cb4444"
-"let s:darkred = "#770811"
-"let s:orange = "#FF9900"
-"let s:yellow = "#ddbb88"
-"let s:heavyyellow = "#FFEEBB"
-"let s:black = "#010101"
-"let s:white = "#ffffff"
-"let s:none = "NONE"
 " }}}
 
 " TODO: mejorar condiciones y pasarlas a la función abyss#getSchemeColors()
 
-"if version >= 700
-"    call s:hi("Cursor", s:midblue, s:darkred, "", "", "", "")
-"    call s:hi("CursorLine", "", s:darkblue, "", "", "", "")
-"    call s:hi("CursorLineNr", s:lightgrey, s:bg, "", "", "", "")
+if version >= 700
+    call abyss#highlighter("Cursor", s:attr_none, s:midblue, s:darkred, s:sp_none)
+"    call abyss#highlighter("CursorLine", "", s:darkblue, "", "", "", "")
+"    call abyss#highlighter("CursorLineNr", s:lightgrey, s:bg, "", "", "", "")
 "
-"    call s:hi("ColorColumn", "", s:darkred, "", "", "", "")
+"    call abyss#highlighter("ColorColumn", "", s:darkred, "", "", "", "")
 "
-"    call s:hi("TabLine", s:lightgrey, s:bg, "", "", "", "")
-"    call s:hi("TabLineFill", s:bg, s:bg, "", "", "", "")
-"    call s:hi("TabLineSel", s:white, s:bg, "", "", "", "")
+"    call abyss#highlighter("TabLine", s:lightgrey, s:bg, "", "", "", "")
+"    call abyss#highlighter("TabLineFill", s:bg, s:bg, "", "", "", "")
+"    call abyss#highlighter("TabLineSel", s:white, s:bg, "", "", "", "")
 "
 "    " -- Pop up (autocompletion) style
-"    call s:hi("Pmenu", s:fg, s:bg, "", "", "", "")
-"    call s:hi("PmenuSbar", s:fg, s:bg, "", "", "", "")
-"    call s:hi("PmenuSel", s:bg, s:fg, "", "", "", "")
-"    call s:hi("PmenuThumb", s:heavyyellow, s:darkred, "", "", "", "")
-"endif
+"    call abyss#highlighter("Pmenu", s:fg, s:bg, "", "", "", "")
+"    call abyss#highlighter("PmenuSbar", s:fg, s:bg, "", "", "", "")
+"    call abyss#highlighter("PmenuSel", s:bg, s:fg, "", "", "", "")
+"    call abyss#highlighter("PmenuThumb", s:heavyyellow, s:darkred, "", "", "", "")
+
+"    call abyss#highlighter("Cursor", s:midblue, s:darkred, "", "", "", "")
+"    call abyss#highlighter("CursorLine", "", s:darkblue, "", "", "", "")
+"    call abyss#highlighter("CursorLineNr", s:lightgrey, s:bg, "", "", "", "")
+"
+"    call abyss#highlighter("ColorColumn", "", s:darkred, "", "", "", "")
+"
+"    call abyss#highlighter("TabLine", s:lightgrey, s:bg, "", "", "", "")
+"    call abyss#highlighter("TabLineFill", s:bg, s:bg, "", "", "", "")
+"    call abyss#highlighter("TabLineSel", s:white, s:bg, "", "", "", "")
+"
+"    " -- Pop up (autocompletion) style
+"    call abyss#highlighter("Pmenu", s:fg, s:bg, "", "", "", "")
+"    call abyss#highlighter("PmenuSbar", s:fg, s:bg, "", "", "", "")
+"    call abyss#highlighter("PmenuSel", s:bg, s:fg, "", "", "", "")
+"    call abyss#highlighter("PmenuThumb", s:heavyyellow, s:darkred, "", "", "", "")
+endif
 
 
 " TODO: implementar función abyss#highlighter() a los 'editor highlighting'
@@ -118,52 +120,52 @@ let s:none = colors.none
 " Editor Highlighting: {{{
 "call abyss#highlighter("Normal", s:bg, s:fg)
 
-"call s:hi("Normal", s:fg, s:bg, "", "", "", "")
-"" call s:hi("NonText", s:bg, s:bg, "", "", "", "")
-""call s:hi("SignColumn", s:fg, s:bg, "", "", "", "")
-"call s:hi("Question", s:yellow, "", "", "", "", "")
-"call s:hi("Title", s:heavyyellow, "", "", "", "", "")
+"call abyss#highlighter("Normal", s:fg, s:bg, "", "", "", "")
+"" call abyss#highlighter("NonText", s:bg, s:bg, "", "", "", "")
+""call abyss#highlighter("SignColumn", s:fg, s:bg, "", "", "", "")
+"call abyss#highlighter("Question", s:yellow, "", "", "", "", "")
+"call abyss#highlighter("Title", s:heavyyellow, "", "", "", "", "")
 "
 "highlight! link NonText Normal
 "highlight! link SignColumn Normal
 "
-"call s:hi("LineNr", s:lowgrey, s:bg, "", "", "", "")
+"call abyss#highlighter("LineNr", s:lowgrey, s:bg, "", "", "", "")
 "
-"call s:hi("StatusLine", "", s:bg, "", "", "", "")
-"call s:hi("StatusLineNC", "", s:black, "", "", "", "")
+"call abyss#highlighter("StatusLine", "", s:bg, "", "", "", "")
+"call abyss#highlighter("StatusLineNC", "", s:black, "", "", "", "")
 "
-"call s:hi("VertSplit", s:bg, s:fg, "", "", "", "")
+"call abyss#highlighter("VertSplit", s:bg, s:fg, "", "", "", "")
 "
-"call s:hi("Directory", s:heavyyellow, "", "", "", "", "")
+"call abyss#highlighter("Directory", s:heavyyellow, "", "", "", "", "")
 "
-"call s:hi("ErrorMsg", s:red, s:none, "", "", "", "")
-"call s:hi("WarningMsg", s:heavyyellow, s:none, "", "", "", "")
+"call abyss#highlighter("ErrorMsg", s:red, s:none, "", "", "", "")
+"call abyss#highlighter("WarningMsg", s:heavyyellow, s:none, "", "", "", "")
 "
-"call s:hi("Search", s:black, s:yellow, "", "", "", "")
-"call s:hi("IncSearch", s:black, s:yellow, "", "", "", "")
+"call abyss#highlighter("Search", s:black, s:yellow, "", "", "", "")
+"call abyss#highlighter("IncSearch", s:black, s:yellow, "", "", "", "")
 "
-"call s:hi("Visual", "", s:darkred, "", "", "", "")
+"call abyss#highlighter("Visual", "", s:darkred, "", "", "", "")
 "
-"call s:hi("ModeMsg", s:fg, s:none, "", "", "", "")
-"call s:hi("MoreMsg", s:fg, "", "", "", "", "")
+"call abyss#highlighter("ModeMsg", s:fg, s:none, "", "", "", "")
+"call abyss#highlighter("MoreMsg", s:fg, "", "", "", "", "")
 "
-"call s:hi("MatchParen", s:heavyyellow, s:darkred, "", "", "", "")
+"call abyss#highlighter("MatchParen", s:heavyyellow, s:darkred, "", "", "", "")
 "
-"call s:hi("SpecialKey", s:heavyyellow, "", "", "", "", "")
+"call abyss#highlighter("SpecialKey", s:heavyyellow, "", "", "", "", "")
 "
-"call s:hi("SpellBad", s:red, "", "", "", "", "")
-"call s:hi("SpellRare", s:yellow, "", "", "", "", "")
-"call s:hi("SpellCap", s:yellow, "", "", "", "", "")
-"call s:hi("SpellLocal", s:orange, "", "", "", "", "")
+"call abyss#highlighter("SpellBad", s:red, "", "", "", "", "")
+"call abyss#highlighter("SpellRare", s:yellow, "", "", "", "", "")
+"call abyss#highlighter("SpellCap", s:yellow, "", "", "", "", "")
+"call abyss#highlighter("SpellLocal", s:orange, "", "", "", "", "")
 "
-"call s:hi("QuickFixLine", "", s:darkred, "", "", "", "")
+"call abyss#highlighter("QuickFixLine", "", s:darkred, "", "", "", "")
 "
-"call s:hi("WildMenu", s:bg, s:fg, "", "", "", "")
+"call abyss#highlighter("WildMenu", s:bg, s:fg, "", "", "", "")
 "
 "" -- Diffs
-"call s:hi("DiffAdd", "", s:darkgreen, "", "", "", "")
-"call s:hi("DiffChange", "", s:yellow, "", "", "", "")
-"call s:hi("DiffDelete", "", s:darkred, "", "", "", "")
+"call abyss#highlighter("DiffAdd", "", s:darkgreen, "", "", "", "")
+"call abyss#highlighter("DiffChange", "", s:yellow, "", "", "", "")
+"call abyss#highlighter("DiffDelete", "", s:darkred, "", "", "", "")
 "
 "highlight! link GitGutterAdd DiffAdd
 "highlight! link GitGutterChange DiffChange
@@ -173,115 +175,115 @@ let s:none = colors.none
 " TODO: implementar función abyss#highlighter() a los 'syntax highlighting'
 
 "" Syntax Highlighting: {{{
-"call s:hi("String", s:darkgreen, "", "", "", "", "")
-"call s:hi("Comment", s:midblue, "", "", "", s:is_italic_comments_enabled, "")
-"call s:hi("Number", s:pink, "", "", "", "", "")
-"call s:hi("Float", s:pink, "", "", "", "", "")
-"call s:hi("Boolean", s:pink, "", "", "", "", "")
-"call s:hi("Keyword", s:darkgrey, "", "", "", "", "")
-"call s:hi("Repeat", s:darkgrey, "", "", "", "", "")
-"call s:hi("Character", s:lightgrey, "", "", "", "", "")
-"call s:hi("Statement", s:darkgrey, "", "", "", "", "")
-"call s:hi("StorageClass", s:fg, "", "", "", "", "")
-"call s:hi("Function", s:yellow, "", "", "", "", "")
-"call s:hi("Label", s:darkgrey, "", "", "", "", "")
-"call s:hi("Operator", s:darkgrey, "", "", "", "", "")
-"call s:hi("Exception", s:darkgrey, "", "", "", "", "")
-"call s:hi("Type", s:heavyyellow, "", "", "", s:is_underline_enabled, "")
-"call s:hi("Constant", s:fg, "", "", "", "", "")
-"call s:hi("SpecialChar", s:yellow, "", "", "", s:is_underline_enabled, "")
-"call s:hi("Typedef", s:purple, "", "", "", s:is_italic_enabled, "")
-"call s:hi("Structure", s:purple, "", "", "", "", "")
-"call s:hi("PreProc", s:darkgrey, "", "", "", "", "")
-"call s:hi("Include", s:darkgrey, "", "", "", "", "")
-"call s:hi("Define", s:darkgrey, "", "", "", "", "")
-"call s:hi("Macro", s:darkgrey, "", "", "", "", "")
-"call s:hi("PreCondit", s:darkgrey, "", "", "", "", "")
-"call s:hi("Special", s:pink, "", "", "", "", "")
-"call s:hi("Underlined", s:darkgreen, "", "", "", s:is_underline_enabled, "")
-"call s:hi("Conceal", "", s:bg, "", "", "", "")
-"call s:hi("Todo", s:heavyyellow, "", "", "", s:is_italic_enabled, "")
-"call s:hi("Tag", s:darkgrey, "", "", "", "", "")
-"call s:hi("Delimiter", s:midblue, "", "", "", "", "")
-"call s:hi("SpecialComment", s:purple, "", "", "", "", "")
-"call s:hi("Debug", s:darkgrey, "", "", "", "", "")
-"call s:hi("Error", s:red, "", "", "", s:is_undercurl_enabled, "")
-"call s:hi("Ignore", s:darkgrey, "", "", "", "", "")
+"call abyss#highlighter("String", s:darkgreen, "", "", "", "", "")
+"call abyss#highlighter("Comment", s:midblue, "", "", "", s:is_italic_comments_enabled, "")
+"call abyss#highlighter("Number", s:pink, "", "", "", "", "")
+"call abyss#highlighter("Float", s:pink, "", "", "", "", "")
+"call abyss#highlighter("Boolean", s:pink, "", "", "", "", "")
+"call abyss#highlighter("Keyword", s:darkgrey, "", "", "", "", "")
+"call abyss#highlighter("Repeat", s:darkgrey, "", "", "", "", "")
+"call abyss#highlighter("Character", s:lightgrey, "", "", "", "", "")
+"call abyss#highlighter("Statement", s:darkgrey, "", "", "", "", "")
+"call abyss#highlighter("StorageClass", s:fg, "", "", "", "", "")
+"call abyss#highlighter("Function", s:yellow, "", "", "", "", "")
+"call abyss#highlighter("Label", s:darkgrey, "", "", "", "", "")
+"call abyss#highlighter("Operator", s:darkgrey, "", "", "", "", "")
+"call abyss#highlighter("Exception", s:darkgrey, "", "", "", "", "")
+"call abyss#highlighter("Type", s:heavyyellow, "", "", "", s:is_underline_enabled, "")
+"call abyss#highlighter("Constant", s:fg, "", "", "", "", "")
+"call abyss#highlighter("SpecialChar", s:yellow, "", "", "", s:is_underline_enabled, "")
+"call abyss#highlighter("Typedef", s:purple, "", "", "", s:is_italic_enabled, "")
+"call abyss#highlighter("Structure", s:purple, "", "", "", "", "")
+"call abyss#highlighter("PreProc", s:darkgrey, "", "", "", "", "")
+"call abyss#highlighter("Include", s:darkgrey, "", "", "", "", "")
+"call abyss#highlighter("Define", s:darkgrey, "", "", "", "", "")
+"call abyss#highlighter("Macro", s:darkgrey, "", "", "", "", "")
+"call abyss#highlighter("PreCondit", s:darkgrey, "", "", "", "", "")
+"call abyss#highlighter("Special", s:pink, "", "", "", "", "")
+"call abyss#highlighter("Underlined", s:darkgreen, "", "", "", s:is_underline_enabled, "")
+"call abyss#highlighter("Conceal", "", s:bg, "", "", "", "")
+"call abyss#highlighter("Todo", s:heavyyellow, "", "", "", s:is_italic_enabled, "")
+"call abyss#highlighter("Tag", s:darkgrey, "", "", "", "", "")
+"call abyss#highlighter("Delimiter", s:midblue, "", "", "", "", "")
+"call abyss#highlighter("SpecialComment", s:purple, "", "", "", "", "")
+"call abyss#highlighter("Debug", s:darkgrey, "", "", "", "", "")
+"call abyss#highlighter("Error", s:red, "", "", "", s:is_undercurl_enabled, "")
+"call abyss#highlighter("Ignore", s:darkgrey, "", "", "", "", "")
 "" }}}
 
 " TODO: implementar función abyss#highlighter() a los 'vim script highlighting'
 
 "" VIM SCRIPT: {{{
-"call s:hi("vimLineComment", s:midblue, "", "", "", s:is_italic_comments_enabled, "")
-"call s:hi("vimCommentTitle", s:heavyyellow, "", "", "", s:is_italic_comments_enabled . s:is_underline_enabled, "")
-"call s:hi("vimCommentTitle", s:heavyyellow, "", "", "", s:is_italic_comments_enabled . s:is_underline_enabled, "")
+"call abyss#highlighter("vimLineComment", s:midblue, "", "", "", s:is_italic_comments_enabled, "")
+"call abyss#highlighter("vimCommentTitle", s:heavyyellow, "", "", "", s:is_italic_comments_enabled . s:is_underline_enabled, "")
+"call abyss#highlighter("vimCommentTitle", s:heavyyellow, "", "", "", s:is_italic_comments_enabled . s:is_underline_enabled, "")
 "
-"call s:hi("vimIsCommand", s:purple, "", "", "", "", "")
-"call s:hi("vimCommand", s:purple, "", "", "", "", "")
-"call s:hi("vimMap", s:purple, "", "", "", "", "")
-"call s:hi("vimUserCmd", s:purple, "", "", "", "", "")
+"call abyss#highlighter("vimIsCommand", s:purple, "", "", "", "", "")
+"call abyss#highlighter("vimCommand", s:purple, "", "", "", "", "")
+"call abyss#highlighter("vimMap", s:purple, "", "", "", "", "")
+"call abyss#highlighter("vimUserCmd", s:purple, "", "", "", "", "")
 "
-"call s:hi("vimNotFunc", s:fg, "", "", "", "", "")
-"call s:hi("vimFunc", s:yellow, "", "", "", "", "")
-"call s:hi("vimUserFunc", s:yellow, "", "", "", "", "")
-"call s:hi("vimFuncName", s:yellow, "", "", "", "", "")
-"call s:hi("vimFuncBody", s:yellow, "", "", "", "", "")
-"call s:hi("vimFunction", s:yellow, "", "", "", "", "")
-"call s:hi("vimFuncSID", s:yellow, "", "", "", "", "")
-"call s:hi("vimFuncKey", s:purple, "", "", "", "", "")
-"call s:hi("vimFuncVar", s:shinyblue, "", "", "", s:is_italic_enabled, "")
+"call abyss#highlighter("vimNotFunc", s:fg, "", "", "", "", "")
+"call abyss#highlighter("vimFunc", s:yellow, "", "", "", "", "")
+"call abyss#highlighter("vimUserFunc", s:yellow, "", "", "", "", "")
+"call abyss#highlighter("vimFuncName", s:yellow, "", "", "", "", "")
+"call abyss#highlighter("vimFuncBody", s:yellow, "", "", "", "", "")
+"call abyss#highlighter("vimFunction", s:yellow, "", "", "", "", "")
+"call abyss#highlighter("vimFuncSID", s:yellow, "", "", "", "", "")
+"call abyss#highlighter("vimFuncKey", s:purple, "", "", "", "", "")
+"call abyss#highlighter("vimFuncVar", s:shinyblue, "", "", "", s:is_italic_enabled, "")
 "
-"call s:hi("vimLet", s:fg, "", "", "", "", "")
-"call s:hi("vimVar", s:shinyblue, "", "", "", s:is_italic_enabled, "")
+"call abyss#highlighter("vimLet", s:fg, "", "", "", "", "")
+"call abyss#highlighter("vimVar", s:shinyblue, "", "", "", s:is_italic_enabled, "")
 "
-"call s:hi("vimParenSep", s:fg, "", "", "", "", "")
-"call s:hi("vimOperParen", s:fg, "", "", "", "", "")
+"call abyss#highlighter("vimParenSep", s:fg, "", "", "", "", "")
+"call abyss#highlighter("vimOperParen", s:fg, "", "", "", "", "")
 "
-"call s:hi("vimString", s:darkgreen, "", "", "", "", "")
+"call abyss#highlighter("vimString", s:darkgreen, "", "", "", "", "")
 "
-"call s:hi("vimFTOption", s:heavyyellow, "", "", "", "", "")
-"call s:hi("vimSynType", s:heavyyellow, "", "", "", "", "")
-"call s:hi("vimExecute", s:heavyyellow, "", "", "", "", "")
+"call abyss#highlighter("vimFTOption", s:heavyyellow, "", "", "", "", "")
+"call abyss#highlighter("vimSynType", s:heavyyellow, "", "", "", "", "")
+"call abyss#highlighter("vimExecute", s:heavyyellow, "", "", "", "", "")
 "
-"call s:hi("vimOption", s:fg, "", "", "", "", "")
+"call abyss#highlighter("vimOption", s:fg, "", "", "", "", "")
 "
-"call s:hi("vimMapMod", s:lowgrey, "", "", "", "", "")
-"call s:hi("vimBracket", s:lowgrey, "", "", "", "", "")
-"call s:hi("vimMapModKey", s:yellow, "", "", "", "", "")
+"call abyss#highlighter("vimMapMod", s:lowgrey, "", "", "", "", "")
+"call abyss#highlighter("vimBracket", s:lowgrey, "", "", "", "", "")
+"call abyss#highlighter("vimMapModKey", s:yellow, "", "", "", "", "")
 "
-"call s:hi("vimSet", s:fg, "", "", "", "", "")
-"call s:hi("vimSetEqual", s:fg, "", "", "", "", "")
+"call abyss#highlighter("vimSet", s:fg, "", "", "", "", "")
+"call abyss#highlighter("vimSetEqual", s:fg, "", "", "", "", "")
 "" }}}
 
 " TODO: implementar función abyss#highlighter() a los 'gitcommit highlighting'
 
 "" GITCOMMIT: {{{
-"call s:hi("gitcommitFirstLine", s:heavyyellow, "", "", "", s:is_underline_enabled, "")
-"call s:hi("gitcommitSummary", s:heavyyellow, "", "", "", s:is_underline_enabled, "")
-"call s:hi("gitcommitComment", s:midblue, "", "", "", s:is_italic_comments_enabled, "")
-"call s:hi("gitcommitHeader", s:heavyyellow, "", "", "", s:is_underline_enabled, "")
-"call s:hi("gitcommitBranch", s:pink, "", "", "", "", "")
-"call s:hi("gitcommitOnBranch", s:midblue, "", "", "", s:is_italic_comments_enabled, "")
-"call s:hi("gitcommitSelectedType", s:yellow, "", "", "", "", "")
+"call abyss#highlighter("gitcommitFirstLine", s:heavyyellow, "", "", "", s:is_underline_enabled, "")
+"call abyss#highlighter("gitcommitSummary", s:heavyyellow, "", "", "", s:is_underline_enabled, "")
+"call abyss#highlighter("gitcommitComment", s:midblue, "", "", "", s:is_italic_comments_enabled, "")
+"call abyss#highlighter("gitcommitHeader", s:heavyyellow, "", "", "", s:is_underline_enabled, "")
+"call abyss#highlighter("gitcommitBranch", s:pink, "", "", "", "", "")
+"call abyss#highlighter("gitcommitOnBranch", s:midblue, "", "", "", s:is_italic_comments_enabled, "")
+"call abyss#highlighter("gitcommitSelectedType", s:yellow, "", "", "", "", "")
 "" }}}
 
 " TODO: implementar función abyss#highlighter() a los 'editorconfig highlighting'
 
 "" EditorConfig: {{{
-"call s:hi("dosiniHeader", s:lowgrey, "", "", "", "", "")
-"call s:hi("dosiniLabel", s:lowgrey, "", "", "", "", "")
-"call s:hi("dosiniNumber", s:pink, "", "", "", "", "")
-"call s:hi("dosiniValue", s:pink, "", "", "", "", "")
+"call abyss#highlighter("dosiniHeader", s:lowgrey, "", "", "", "", "")
+"call abyss#highlighter("dosiniLabel", s:lowgrey, "", "", "", "", "")
+"call abyss#highlighter("dosiniNumber", s:pink, "", "", "", "", "")
+"call abyss#highlighter("dosiniValue", s:pink, "", "", "", "", "")
 "" }}}
 
 " TODO: implementar función abyss#highlighter() a los 'tmux highlighting'
 
 "" TMUX: {{{
-"call s:hi("tmuxCommands", s:purple, "", "", "", "", "")
-"call s:hi("tmuxFlags", s:lowgrey, "", "", "", "", "")
-"call s:hi("tmuxOptions", s:yellow, "", "", "", "", "")
-"call s:hi("tmuxString", s:darkgreen, "", "", "", "", "")
-"call s:hi("tmuxFormatString", s:lightgrey, "", "", "", "", "")
-"call s:hi("tmuxEnums", s:pink, "", "", "", "", "")
-"call s:hi("tmuxNumber", s:pink, "", "", "", "", "")
+"call abyss#highlighter("tmuxCommands", s:purple, "", "", "", "", "")
+"call abyss#highlighter("tmuxFlags", s:lowgrey, "", "", "", "", "")
+"call abyss#highlighter("tmuxOptions", s:yellow, "", "", "", "", "")
+"call abyss#highlighter("tmuxString", s:darkgreen, "", "", "", "", "")
+"call abyss#highlighter("tmuxFormatString", s:lightgrey, "", "", "", "", "")
+"call abyss#highlighter("tmuxEnums", s:pink, "", "", "", "", "")
+"call abyss#highlighter("tmuxNumber", s:pink, "", "", "", "", "")
 "" }}}
