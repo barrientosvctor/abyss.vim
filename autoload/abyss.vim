@@ -39,11 +39,19 @@ function abyss#getAttributes()
     let l:attrs.attr_italic = ["italic", "italic"]
     let l:attrs.attr_undercurl = ["undercurl", "undercurl"]
     let l:attrs.attr_underline = ["underline", "underline"]
+    let l:attrs.attr_none = ["NONE", "NONE"]
 
     return l:attrs
 endfunction
 
-" TODO: crear función: abyss#getSP()
+function abyss#getSP()
+    let l:sps = {}
+
+    let l:sps.sp_none = ["NONE"]
+
+    return l:sps
+endfunction
+
 
 " This function sets colors to highlight groups. all params are 'List' data
 " type
