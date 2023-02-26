@@ -24,8 +24,6 @@ let sp = abyss#getSP()
 let s:sp_none = sp.sp_none
 " }}}
 
-" TODO: adaptar categoría 'config' a función abyss#getSchemeColors()
-
 " Config: {{{
 " -- Italic
 let g:abyss_italic = get(g:, "abyss_italic", 0) " disabled per default (0)
@@ -78,40 +76,38 @@ let s:black = colors.black
 let s:none = colors.none
 " }}}
 
-" TODO: mejorar condiciones y pasarlas a la función abyss#getSchemeColors()
-
 if version >= 700
     call abyss#highlighter("Cursor", s:attr_none, s:midblue, s:darkred, s:sp_none)
-"    call abyss#highlighter("CursorLine", "", s:darkblue, "", "", "", "")
-"    call abyss#highlighter("CursorLineNr", s:lightgrey, s:bg, "", "", "", "")
-"
-"    call abyss#highlighter("ColorColumn", "", s:darkred, "", "", "", "")
-"
-"    call abyss#highlighter("TabLine", s:lightgrey, s:bg, "", "", "", "")
-"    call abyss#highlighter("TabLineFill", s:bg, s:bg, "", "", "", "")
-"    call abyss#highlighter("TabLineSel", s:white, s:bg, "", "", "", "")
-"
-"    " -- Pop up (autocompletion) style
-"    call abyss#highlighter("Pmenu", s:fg, s:bg, "", "", "", "")
-"    call abyss#highlighter("PmenuSbar", s:fg, s:bg, "", "", "", "")
-"    call abyss#highlighter("PmenuSel", s:bg, s:fg, "", "", "", "")
-"    call abyss#highlighter("PmenuThumb", s:heavyyellow, s:darkred, "", "", "", "")
+    call abyss#highlighter("CursorLine", s:attr_none, s:darkblue, s:none, s:sp_none)
+    call abyss#highlighter("CursorLineNr", s:attr_none, s:lightgrey, s:bg, s:sp_none)
 
-"    call abyss#highlighter("Cursor", s:midblue, s:darkred, "", "", "", "")
-"    call abyss#highlighter("CursorLine", "", s:darkblue, "", "", "", "")
-"    call abyss#highlighter("CursorLineNr", s:lightgrey, s:bg, "", "", "", "")
-"
-"    call abyss#highlighter("ColorColumn", "", s:darkred, "", "", "", "")
-"
-"    call abyss#highlighter("TabLine", s:lightgrey, s:bg, "", "", "", "")
-"    call abyss#highlighter("TabLineFill", s:bg, s:bg, "", "", "", "")
-"    call abyss#highlighter("TabLineSel", s:white, s:bg, "", "", "", "")
-"
-"    " -- Pop up (autocompletion) style
-"    call abyss#highlighter("Pmenu", s:fg, s:bg, "", "", "", "")
-"    call abyss#highlighter("PmenuSbar", s:fg, s:bg, "", "", "", "")
-"    call abyss#highlighter("PmenuSel", s:bg, s:fg, "", "", "", "")
-"    call abyss#highlighter("PmenuThumb", s:heavyyellow, s:darkred, "", "", "", "")
+    call abyss#highlighter("ColorColumn", s:attr_none, s:none, s:darkred, s:sp_none)
+
+    call abyss#highlighter("TabLine", s:attr_none, s:lightgrey, s:bg, s:sp_none)
+    call abyss#highlighter("TabLineFill", s:attr_none, s:bg, s:bg, s:sp_none)
+    call abyss#highlighter("TabLineSel", s:attr_none, s:white, s:bg, s:sp_none)
+
+    " -- Pop up (autocompletion) style
+    call abyss#highlighter("Pmenu", s:attr_none, s:fg, s:bg, s:sp_none)
+    call abyss#highlighter("PmenuSbar", s:attr_none, s:fg, s:bg, s:sp_none)
+    call abyss#highlighter("PmenuSel", s:attr_none, s:bg, s:fg, s:sp_none)
+    call abyss#highlighter("PmenuThumb", s:attr_none, s:heavyyellow, s:darkred, s:sp_none)
+
+    call abyss#highlighter("Cursor", s:attr_none, s:midblue, s:darkred, s:sp_none)
+    call abyss#highlighter("CursorLine", s:attr_none, s:none, s:darkblue, s:sp_none)
+    call abyss#highlighter("CursorLineNr", s:attr_none, s:lightgrey, s:bg, s:sp_none)
+
+    call abyss#highlighter("ColorColumn", s:attr_none, s:none, s:darkred, s:sp_none)
+
+    call abyss#highlighter("TabLine", s:attr_none, s:lightgrey, s:bg, s:sp_none)
+    call abyss#highlighter("TabLineFill", s:attr_none, s:bg, s:bg, s:sp_none)
+    call abyss#highlighter("TabLineSel", s:attr_none, s:white, s:bg, s:sp_none)
+
+    " -- Pop up (autocompletion) style
+    call abyss#highlighter("Pmenu", s:attr_none, s:fg, s:bg, s:sp_none)
+    call abyss#highlighter("PmenuSbar", s:attr_none, s:fg, s:bg, s:sp_none)
+    call abyss#highlighter("PmenuSel", s:attr_none, s:bg, s:fg, s:sp_none)
+    call abyss#highlighter("PmenuThumb", s:attr_none, s:heavyyellow, s:darkred, s:sp_none)
 endif
 
 
