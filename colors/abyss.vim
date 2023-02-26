@@ -1,5 +1,15 @@
 set background=dark
 
+" Necessary variables are initialized.
+let s:termguicolors = has('termguicolors') ? 1 : 0
+let s:gui_running = has('gui_running') ? 1 : 0
+
+" The script ends if the theme is not supported.
+if !(s:termguicolors && &termguicolors) && &t_Co != 256 &&
+      \ !s:gui_running && !has('syntax')
+  finish
+endif
+
 hi clear
 
 if exists("syntax_on")
@@ -114,58 +124,56 @@ endif
 " TODO: implementar función abyss#highlighter() a los 'editor highlighting'
 
 " Editor Highlighting: {{{
-"call abyss#highlighter("Normal", s:bg, s:fg)
+call abyss#highlighter("Normal", s:attr_none, s:bg, s:fg, s:sp_none)
+" call abyss#highlighter("NonText", s:bg, s:bg, "", "", "", "")
+"call abyss#highlighter("SignColumn", s:fg, s:bg, "", "", "", "")
+call abyss#highlighter("Question", s:attr_none, s:yellow, s:none, s:sp_none)
+call abyss#highlighter("Title", s:attr_none, s:heavyyellow, s:none, s:sp_none)
 
-"call abyss#highlighter("Normal", s:fg, s:bg, "", "", "", "")
-"" call abyss#highlighter("NonText", s:bg, s:bg, "", "", "", "")
-""call abyss#highlighter("SignColumn", s:fg, s:bg, "", "", "", "")
-"call abyss#highlighter("Question", s:yellow, "", "", "", "", "")
-"call abyss#highlighter("Title", s:heavyyellow, "", "", "", "", "")
-"
-"highlight! link NonText Normal
-"highlight! link SignColumn Normal
-"
-"call abyss#highlighter("LineNr", s:lowgrey, s:bg, "", "", "", "")
-"
-"call abyss#highlighter("StatusLine", "", s:bg, "", "", "", "")
-"call abyss#highlighter("StatusLineNC", "", s:black, "", "", "", "")
-"
-"call abyss#highlighter("VertSplit", s:bg, s:fg, "", "", "", "")
-"
-"call abyss#highlighter("Directory", s:heavyyellow, "", "", "", "", "")
-"
-"call abyss#highlighter("ErrorMsg", s:red, s:none, "", "", "", "")
-"call abyss#highlighter("WarningMsg", s:heavyyellow, s:none, "", "", "", "")
-"
-"call abyss#highlighter("Search", s:black, s:yellow, "", "", "", "")
-"call abyss#highlighter("IncSearch", s:black, s:yellow, "", "", "", "")
-"
-"call abyss#highlighter("Visual", "", s:darkred, "", "", "", "")
-"
-"call abyss#highlighter("ModeMsg", s:fg, s:none, "", "", "", "")
-"call abyss#highlighter("MoreMsg", s:fg, "", "", "", "", "")
-"
-"call abyss#highlighter("MatchParen", s:heavyyellow, s:darkred, "", "", "", "")
-"
-"call abyss#highlighter("SpecialKey", s:heavyyellow, "", "", "", "", "")
-"
-"call abyss#highlighter("SpellBad", s:red, "", "", "", "", "")
-"call abyss#highlighter("SpellRare", s:yellow, "", "", "", "", "")
-"call abyss#highlighter("SpellCap", s:yellow, "", "", "", "", "")
-"call abyss#highlighter("SpellLocal", s:orange, "", "", "", "", "")
-"
-"call abyss#highlighter("QuickFixLine", "", s:darkred, "", "", "", "")
-"
-"call abyss#highlighter("WildMenu", s:bg, s:fg, "", "", "", "")
-"
-"" -- Diffs
-"call abyss#highlighter("DiffAdd", "", s:darkgreen, "", "", "", "")
-"call abyss#highlighter("DiffChange", "", s:yellow, "", "", "", "")
-"call abyss#highlighter("DiffDelete", "", s:darkred, "", "", "", "")
-"
-"highlight! link GitGutterAdd DiffAdd
-"highlight! link GitGutterChange DiffChange
-"highlight! link GitGutterDelete DiffDelete
+highlight! link NonText Normal
+highlight! link SignColumn Normal
+
+call abyss#highlighter("LineNr", s:attr_none, s:bg, s:fg, s:sp_none)
+
+call abyss#highlighter("StatusLine", s:attr_none, s:none, s:bg, s:sp_none)
+call abyss#highlighter("StatusLineNC", s:attr_none, s:none, s:black, s:sp_none)
+
+call abyss#highlighter("VertSplit", s:attr_none, s:bg, s:fg, s:sp_none)
+
+call abyss#highlighter("Directory", s:attr_none, s:heavyyellow, s:none, s:sp_none)
+
+call abyss#highlighter("ErrorMsg", s:attr_none, s:red, s:none, s:sp_none)
+call abyss#highlighter("WarningMsg", s:attr_none, s:heavyyellow, s:none, s:sp_none)
+
+call abyss#highlighter("Search", s:attr_none, s:black, s:yellow, s:sp_none)
+call abyss#highlighter("IncSearch", s:attr_none, s:black, s:yellow, s:sp_none)
+
+call abyss#highlighter("Visual", s:attr_none, s:none, s:darkred, s:sp_none)
+
+call abyss#highlighter("ModeMsg", s:attr_none, s:fg, s:none, s:sp_none)
+call abyss#highlighter("MoreMsg", s:attr_none, s:fg, s:none, s:sp_none)
+
+call abyss#highlighter("MatchParen", s:attr_none, s:heavyyellow, s:darkred, s:sp_none)
+
+call abyss#highlighter("SpecialKey", s:attr_none, s:heavyyellow, s:none, s:sp_none)
+
+call abyss#highlighter("SpellBad", s:attr_none, s:red, s:none, s:sp_none)
+call abyss#highlighter("SpellRare", s:attr_none, s:yellow, s:none, s:sp_none)
+call abyss#highlighter("SpellCap", s:attr_none, s:yellow, s:none, s:sp_none)
+call abyss#highlighter("SpellLocal", s:attr_none, s:orange, s:none, s:sp_none)
+
+call abyss#highlighter("QuickFixLine", s:attr_none, s:none, s:darkred, s:sp_none)
+
+call abyss#highlighter("WildMenu", s:attr_none, s:bg, s:fg, s:sp_none)
+
+" -- Diffs
+call abyss#highlighter("DiffAdd", s:attr_none, s:none, s:darkgreen, s:sp_none)
+call abyss#highlighter("DiffChange", s:attr_none, s:none, s:yellow, s:sp_none)
+call abyss#highlighter("DiffDelete", s:attr_none, s:none, s:darkred, s:sp_none)
+
+highlight! link GitGutterAdd DiffAdd
+highlight! link GitGutterChange DiffChange
+highlight! link GitGutterDelete DiffDelete
 " }}}
 
 " TODO: implementar función abyss#highlighter() a los 'syntax highlighting'
