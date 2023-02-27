@@ -89,46 +89,29 @@ let s:none = colors.none
 if version >= 700
     call abyss#highlighter("Cursor", s:attr_none, s:midblue, s:darkred, s:sp_none)
     call abyss#highlighter("CursorLine", s:attr_none, s:darkblue, s:none, s:sp_none)
-    call abyss#highlighter("CursorLineNr", s:attr_none, s:lightgrey, s:bg, s:sp_none)
+    call abyss#highlighter("CursorLineNr", s:attr_none, s:bg, s:lightgrey, s:sp_none)
+    call abyss#highlighter("CursorColumn", s:attr_none, s:darkblue, s:none, s:sp_none)
+    highlight! link CursorLineFold CursorLine
 
-    call abyss#highlighter("ColorColumn", s:attr_none, s:none, s:darkred, s:sp_none)
-
-    call abyss#highlighter("TabLine", s:attr_none, s:lightgrey, s:bg, s:sp_none)
-    call abyss#highlighter("TabLineFill", s:attr_none, s:bg, s:bg, s:sp_none)
-    call abyss#highlighter("TabLineSel", s:attr_none, s:white, s:bg, s:sp_none)
-
-    " -- Pop up (autocompletion) style
-    call abyss#highlighter("Pmenu", s:attr_none, s:fg, s:bg, s:sp_none)
-    call abyss#highlighter("PmenuSbar", s:attr_none, s:fg, s:bg, s:sp_none)
-    call abyss#highlighter("PmenuSel", s:attr_none, s:bg, s:fg, s:sp_none)
-    call abyss#highlighter("PmenuThumb", s:attr_none, s:heavyyellow, s:darkred, s:sp_none)
-
-    call abyss#highlighter("Cursor", s:attr_none, s:midblue, s:darkred, s:sp_none)
-    call abyss#highlighter("CursorLine", s:attr_none, s:none, s:darkblue, s:sp_none)
-    call abyss#highlighter("CursorLineNr", s:attr_none, s:lightgrey, s:bg, s:sp_none)
-
-    call abyss#highlighter("ColorColumn", s:attr_none, s:none, s:darkred, s:sp_none)
+    call abyss#highlighter("ColorColumn", s:attr_none, s:darkred, s:none, s:sp_none)
 
     call abyss#highlighter("TabLine", s:attr_none, s:lightgrey, s:bg, s:sp_none)
     call abyss#highlighter("TabLineFill", s:attr_none, s:bg, s:bg, s:sp_none)
     call abyss#highlighter("TabLineSel", s:attr_none, s:white, s:bg, s:sp_none)
 
     " -- Pop up (autocompletion) style
-    call abyss#highlighter("Pmenu", s:attr_none, s:fg, s:bg, s:sp_none)
-    call abyss#highlighter("PmenuSbar", s:attr_none, s:fg, s:bg, s:sp_none)
-    call abyss#highlighter("PmenuSel", s:attr_none, s:bg, s:fg, s:sp_none)
-    call abyss#highlighter("PmenuThumb", s:attr_none, s:heavyyellow, s:darkred, s:sp_none)
+    call abyss#highlighter("Pmenu", s:attr_none, s:bg, s:fg, s:sp_none)
+    call abyss#highlighter("PmenuSbar", s:attr_none, s:bg, s:bg, s:sp_none)
+    call abyss#highlighter("PmenuSel", s:attr_none, s:fg, s:bg, s:sp_none)
+    call abyss#highlighter("PmenuThumb", s:attr_none, s:fg, s:none, s:sp_none)
 endif
-
 
 " TODO: implementar función abyss#highlighter() a los 'editor highlighting'
 
 " Editor Highlighting: {{{
 call abyss#highlighter("Normal", s:attr_none, s:bg, s:fg, s:sp_none)
-" call abyss#highlighter("NonText", s:bg, s:bg, "", "", "", "")
-"call abyss#highlighter("SignColumn", s:fg, s:bg, "", "", "", "")
-call abyss#highlighter("Question", s:attr_none, s:yellow, s:none, s:sp_none)
-call abyss#highlighter("Title", s:attr_none, s:heavyyellow, s:none, s:sp_none)
+call abyss#highlighter("Question", s:attr_none, s:none, s:yellow, s:sp_none)
+call abyss#highlighter("Title", s:attr_none, s:none, s:heavyyellow, s:sp_none)
 
 highlight! link NonText Normal
 highlight! link SignColumn Normal
@@ -140,31 +123,34 @@ call abyss#highlighter("StatusLineNC", s:attr_none, s:none, s:black, s:sp_none)
 
 call abyss#highlighter("VertSplit", s:attr_none, s:bg, s:fg, s:sp_none)
 
-call abyss#highlighter("Directory", s:attr_none, s:heavyyellow, s:none, s:sp_none)
+call abyss#highlighter("Directory", s:attr_none, s:none, s:heavyyellow, s:sp_none)
 
-call abyss#highlighter("ErrorMsg", s:attr_none, s:red, s:none, s:sp_none)
-call abyss#highlighter("WarningMsg", s:attr_none, s:heavyyellow, s:none, s:sp_none)
+call abyss#highlighter("ErrorMsg", s:attr_bold, s:none, s:red, s:sp_none)
+call abyss#highlighter("WarningMsg", s:attr_bold, s:none, s:heavyyellow, s:sp_none)
 
-call abyss#highlighter("Search", s:attr_none, s:black, s:yellow, s:sp_none)
-call abyss#highlighter("IncSearch", s:attr_none, s:black, s:yellow, s:sp_none)
+call abyss#highlighter("Search", s:attr_none, s:yellow, s:none, s:sp_none)
+highlight! link IncSearch Search
 
-call abyss#highlighter("Visual", s:attr_none, s:none, s:darkred, s:sp_none)
+call abyss#highlighter("Visual", s:attr_none, s:darkred, s:none, s:sp_none)
 
-call abyss#highlighter("ModeMsg", s:attr_none, s:fg, s:none, s:sp_none)
-call abyss#highlighter("MoreMsg", s:attr_none, s:fg, s:none, s:sp_none)
+call abyss#highlighter("ModeMsg", s:attr_bold, s:none, s:heavyyellow, s:sp_none)
+call abyss#highlighter("MoreMsg", s:attr_bold, s:none, s:heavyyellow, s:sp_none)
 
-call abyss#highlighter("MatchParen", s:attr_none, s:heavyyellow, s:darkred, s:sp_none)
+call abyss#highlighter("MatchParen", s:attr_underline, s:none, s:none, s:sp_none)
 
-call abyss#highlighter("SpecialKey", s:attr_none, s:heavyyellow, s:none, s:sp_none)
+call abyss#highlighter("SpecialKey", s:attr_none, s:darkred, s:darkred, s:sp_none)
 
-call abyss#highlighter("SpellBad", s:attr_none, s:red, s:none, s:sp_none)
-call abyss#highlighter("SpellRare", s:attr_none, s:yellow, s:none, s:sp_none)
-call abyss#highlighter("SpellCap", s:attr_none, s:yellow, s:none, s:sp_none)
-call abyss#highlighter("SpellLocal", s:attr_none, s:orange, s:none, s:sp_none)
+call abyss#highlighter("SpellBad", s:attr_undercurl, s:red, s:none, s:sp_none)
+call abyss#highlighter("SpellRare", s:attr_undercurl, s:yellow, s:none, s:sp_none)
+call abyss#highlighter("SpellCap", s:attr_undercurl, s:yellow, s:none, s:sp_none)
+call abyss#highlighter("SpellLocal", s:attr_undercurl, s:orange, s:none, s:sp_none)
+
+call abyss#highlighter("StatusLineTerm", s:attr_none, s:black, s:none, s:sp_none)
+call abyss#highlighter("StatusLineTermNC", s:attr_none, s:black, s:lowgrey, s:sp_none)
 
 call abyss#highlighter("QuickFixLine", s:attr_none, s:none, s:darkred, s:sp_none)
 
-call abyss#highlighter("WildMenu", s:attr_none, s:bg, s:fg, s:sp_none)
+call abyss#highlighter("WildMenu", s:attr_none, s:bg, s:white, s:sp_none)
 
 " -- Diffs
 call abyss#highlighter("DiffAdd", s:attr_none, s:none, s:darkgreen, s:sp_none)
@@ -178,42 +164,43 @@ highlight! link GitGutterDelete DiffDelete
 
 " TODO: implementar función abyss#highlighter() a los 'syntax highlighting'
 
-"" Syntax Highlighting: {{{
-"call abyss#highlighter("String", s:darkgreen, "", "", "", "", "")
-"call abyss#highlighter("Comment", s:midblue, "", "", "", s:is_italic_comments_enabled, "")
-"call abyss#highlighter("Number", s:pink, "", "", "", "", "")
-"call abyss#highlighter("Float", s:pink, "", "", "", "", "")
-"call abyss#highlighter("Boolean", s:pink, "", "", "", "", "")
-"call abyss#highlighter("Keyword", s:darkgrey, "", "", "", "", "")
-"call abyss#highlighter("Repeat", s:darkgrey, "", "", "", "", "")
-"call abyss#highlighter("Character", s:lightgrey, "", "", "", "", "")
-"call abyss#highlighter("Statement", s:darkgrey, "", "", "", "", "")
-"call abyss#highlighter("StorageClass", s:fg, "", "", "", "", "")
-"call abyss#highlighter("Function", s:yellow, "", "", "", "", "")
-"call abyss#highlighter("Label", s:darkgrey, "", "", "", "", "")
-"call abyss#highlighter("Operator", s:darkgrey, "", "", "", "", "")
-"call abyss#highlighter("Exception", s:darkgrey, "", "", "", "", "")
-"call abyss#highlighter("Type", s:heavyyellow, "", "", "", s:is_underline_enabled, "")
-"call abyss#highlighter("Constant", s:fg, "", "", "", "", "")
-"call abyss#highlighter("SpecialChar", s:yellow, "", "", "", s:is_underline_enabled, "")
-"call abyss#highlighter("Typedef", s:purple, "", "", "", s:is_italic_enabled, "")
-"call abyss#highlighter("Structure", s:purple, "", "", "", "", "")
-"call abyss#highlighter("PreProc", s:darkgrey, "", "", "", "", "")
-"call abyss#highlighter("Include", s:darkgrey, "", "", "", "", "")
-"call abyss#highlighter("Define", s:darkgrey, "", "", "", "", "")
-"call abyss#highlighter("Macro", s:darkgrey, "", "", "", "", "")
-"call abyss#highlighter("PreCondit", s:darkgrey, "", "", "", "", "")
-"call abyss#highlighter("Special", s:pink, "", "", "", "", "")
-"call abyss#highlighter("Underlined", s:darkgreen, "", "", "", s:is_underline_enabled, "")
-"call abyss#highlighter("Conceal", "", s:bg, "", "", "", "")
-"call abyss#highlighter("Todo", s:heavyyellow, "", "", "", s:is_italic_enabled, "")
-"call abyss#highlighter("Tag", s:darkgrey, "", "", "", "", "")
-"call abyss#highlighter("Delimiter", s:midblue, "", "", "", "", "")
-"call abyss#highlighter("SpecialComment", s:purple, "", "", "", "", "")
-"call abyss#highlighter("Debug", s:darkgrey, "", "", "", "", "")
-"call abyss#highlighter("Error", s:red, "", "", "", s:is_undercurl_enabled, "")
-"call abyss#highlighter("Ignore", s:darkgrey, "", "", "", "", "")
-"" }}}
+" Syntax Highlighting: {{{
+call abyss#highlighter("String", s:attr_none, s:none, s:darkgreen, s:sp_none)
+call abyss#highlighter("Comment", s:is_italic_comments_enabled, s:none, s:none, s:sp_none)
+call abyss#highlighter("Number", s:attr_none, s:none, s:pink, s:sp_none)
+call abyss#highlighter("Float", s:attr_none, s:none, s:pink, s:sp_none)
+call abyss#highlighter("Boolean", s:attr_none, s:none, s:pink, s:sp_none)
+call abyss#highlighter("Keyword", s:attr_none, s:none, s:darkgrey, s:sp_none)
+call abyss#highlighter("Repeat", s:attr_none, s:none, s:darkgrey, s:sp_none)
+call abyss#highlighter("Character", s:attr_none, s:none, s:lightgrey, s:sp_none)
+call abyss#highlighter("Statement", s:attr_none, s:none, s:darkgrey, s:sp_none)
+call abyss#highlighter("StorageClass", s:attr_none, s:none, s:fg, s:sp_none)
+call abyss#highlighter("Function", s:attr_none, s:none, s:yellow, s:sp_none)
+call abyss#highlighter("Label", s:attr_none, s:none, s:darkgrey, s:sp_none)
+call abyss#highlighter("Operator", s:attr_none, s:none, s:darkgrey, s:sp_none)
+call abyss#highlighter("Exception", s:attr_none, s:none, s:darkgrey, s:sp_none)
+call abyss#highlighter("Type", s:is_underline_enabled, s:none, s:heavyyellow, s:sp_none)
+call abyss#highlighter("Constant", s:attr_none, s:none, s:fg, s:sp_none)
+call abyss#highlighter("SpecialChar", s:is_underline_enabled, s:none, s:yellow, s:sp_none)
+call abyss#highlighter("Typedef", s:is_italic_enabled, s:none, s:purple, s:sp_none)
+call abyss#highlighter("Structure", s:attr_none, s:none, s:purple, s:sp_none)
+call abyss#highlighter("Include", s:attr_none, s:none, s:darkgrey, s:sp_none)
+highlight! link PreProc Include
+highlight! link Define Include
+highlight! link Macro Include
+
+call abyss#highlighter("PreCondit", s:attr_none, s:none, s:darkgrey, s:sp_none)
+call abyss#highlighter("Special", s:attr_none, s:none, s:pink, s:sp_none)
+call abyss#highlighter("Underlined", s:is_underline_enabled, s:none, s:darkgreen, s:sp_none)
+call abyss#highlighter("Conceal", s:attr_none, s:none, s:bg, s:sp_none) " ??
+call abyss#highlighter("Todo", s:is_italic_enabled, s:none, s:heavyyellow, s:sp_none)
+call abyss#highlighter("Tag", s:attr_none, s:none, s:darkgrey, s:sp_none)
+call abyss#highlighter("Delimiter", s:attr_none, s:none, s:midblue, s:sp_none)
+call abyss#highlighter("SpecialComment", s:attr_none, s:none, s:purple, s:sp_none)
+call abyss#highlighter("Debug", s:attr_none, s:none, s:darkgrey, s:sp_none)
+call abyss#highlighter("Error", s:is_undercurl_enabled, s:none, s:red, s:sp_none)
+call abyss#highlighter("Ignore", s:attr_none, s:none, s:darkgrey, s:sp_none)
+" }}}
 
 " TODO: implementar función abyss#highlighter() a los 'vim script highlighting'
 
