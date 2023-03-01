@@ -89,7 +89,7 @@ let s:none = colors.none
 if version >= 700
     call abyss#highlighter("Cursor", s:attr_none, s:midblue, s:darkred, s:sp_none)
     call abyss#highlighter("CursorLine", s:attr_none, s:darkblue, s:none, s:sp_none)
-    call abyss#highlighter("CursorLineNr", s:attr_none, s:bg, s:lightgrey, s:sp_none)
+    call abyss#highlighter("CursorLineNr", s:attr_none, s:bg, s:fg, s:sp_none)
     highlight! link CursorColumn CursorLine
     highlight! link CursorLineFold CursorLine
 
@@ -114,7 +114,7 @@ call abyss#highlighter("Title", s:attr_italic, s:none, s:heavyyellow, s:sp_none)
 highlight! link NonText Normal
 highlight! link SignColumn Normal
 
-call abyss#highlighter("LineNr", s:attr_none, s:bg, s:fg, s:sp_none)
+call abyss#highlighter("LineNr", s:attr_none, s:bg, s:lowgrey, s:sp_none)
 
 call abyss#highlighter("StatusLine", s:attr_none, s:none, s:bg, s:sp_none)
 call abyss#highlighter("StatusLineNC", s:attr_none, s:none, s:black, s:sp_none)
