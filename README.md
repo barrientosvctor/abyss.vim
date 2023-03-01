@@ -1,6 +1,6 @@
 # abyss.vim
 The port of Visual Studio Code's Abyss colorscheme for Vim.
-![Abyss.vim preview](/screenshots/abyss-vim.PNG)
+![Abyss.vim preview](/screenshots/abyss-preview.png)
 
 ## Installation
 Install using their favourite package manager, or use Vim's built-in package manager:
