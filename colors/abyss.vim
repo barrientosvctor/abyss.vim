@@ -136,7 +136,7 @@ call abyss#highlighter("MoreMsg", s:attr_bold, s:none, s:heavyyellow, s:sp_none)
 
 call abyss#highlighter("MatchParen", s:attr_underline, s:none, s:none, s:sp_none)
 
-call abyss#highlighter("SpecialKey", s:attr_none, s:darkred, s:darkred, s:sp_none)
+call abyss#highlighter("SpecialKey", s:attr_none, s:none, s:pink, s:sp_none)
 
 call abyss#highlighter("SpellBad", s:attr_undercurl, s:red, s:none, s:sp_none)
 call abyss#highlighter("SpellRare", s:attr_undercurl, s:yellow, s:none, s:sp_none)
