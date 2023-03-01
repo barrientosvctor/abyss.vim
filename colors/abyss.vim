@@ -90,7 +90,7 @@ if version >= 700
     call abyss#highlighter("Cursor", s:attr_none, s:midblue, s:darkred, s:sp_none)
     call abyss#highlighter("CursorLine", s:attr_none, s:darkblue, s:none, s:sp_none)
     call abyss#highlighter("CursorLineNr", s:attr_none, s:bg, s:lightgrey, s:sp_none)
-    call abyss#highlighter("CursorColumn", s:attr_none, s:darkblue, s:none, s:sp_none)
+    highlight! link CursorColumn CursorLine
     highlight! link CursorLineFold CursorLine
 
     call abyss#highlighter("ColorColumn", s:attr_none, s:darkred, s:none, s:sp_none)
@@ -106,12 +106,10 @@ if version >= 700
     call abyss#highlighter("PmenuThumb", s:attr_none, s:fg, s:none, s:sp_none)
 endif
 
-" TODO: implementar función abyss#highlighter() a los 'editor highlighting'
-
 " Editor Highlighting: {{{
 call abyss#highlighter("Normal", s:attr_none, s:bg, s:fg, s:sp_none)
 call abyss#highlighter("Question", s:attr_none, s:none, s:yellow, s:sp_none)
-call abyss#highlighter("Title", s:attr_none, s:none, s:heavyyellow, s:sp_none)
+call abyss#highlighter("Title", s:attr_italic, s:none, s:heavyyellow, s:sp_none)
 
 highlight! link NonText Normal
 highlight! link SignColumn Normal
@@ -128,7 +126,7 @@ call abyss#highlighter("Directory", s:attr_none, s:none, s:heavyyellow, s:sp_non
 call abyss#highlighter("ErrorMsg", s:attr_bold, s:none, s:red, s:sp_none)
 call abyss#highlighter("WarningMsg", s:attr_bold, s:none, s:heavyyellow, s:sp_none)
 
-call abyss#highlighter("Search", s:attr_none, s:yellow, s:none, s:sp_none)
+call abyss#highlighter("Search", s:attr_none, s:darkred, s:none, s:sp_none)
 highlight! link IncSearch Search
 
 call abyss#highlighter("Visual", s:attr_none, s:darkred, s:none, s:sp_none)
@@ -162,11 +160,9 @@ highlight! link GitGutterChange DiffChange
 highlight! link GitGutterDelete DiffDelete
 " }}}
 
-" TODO: implementar función abyss#highlighter() a los 'syntax highlighting'
-
 " Syntax Highlighting: {{{
 call abyss#highlighter("String", s:attr_none, s:none, s:darkgreen, s:sp_none)
-call abyss#highlighter("Comment", s:is_italic_comments_enabled, s:none, s:none, s:sp_none)
+call abyss#highlighter("Comment", s:is_italic_comments_enabled, s:none, s:midblue, s:sp_none)
 call abyss#highlighter("Number", s:attr_none, s:none, s:pink, s:sp_none)
 call abyss#highlighter("Float", s:attr_none, s:none, s:pink, s:sp_none)
 call abyss#highlighter("Boolean", s:attr_none, s:none, s:pink, s:sp_none)
@@ -193,7 +189,7 @@ call abyss#highlighter("PreCondit", s:attr_none, s:none, s:darkgrey, s:sp_none)
 call abyss#highlighter("Special", s:attr_none, s:none, s:pink, s:sp_none)
 call abyss#highlighter("Underlined", s:is_underline_enabled, s:none, s:darkgreen, s:sp_none)
 call abyss#highlighter("Conceal", s:attr_none, s:none, s:bg, s:sp_none) " ??
-call abyss#highlighter("Todo", s:is_italic_enabled, s:none, s:heavyyellow, s:sp_none)
+call abyss#highlighter("Todo", s:is_bold_enabled, s:darkred, s:heavyyellow, s:sp_none)
 call abyss#highlighter("Tag", s:attr_none, s:none, s:darkgrey, s:sp_none)
 call abyss#highlighter("Delimiter", s:attr_none, s:none, s:midblue, s:sp_none)
 call abyss#highlighter("SpecialComment", s:attr_none, s:none, s:purple, s:sp_none)
@@ -202,79 +198,81 @@ call abyss#highlighter("Error", s:is_undercurl_enabled, s:none, s:red, s:sp_none
 call abyss#highlighter("Ignore", s:attr_none, s:none, s:darkgrey, s:sp_none)
 " }}}
 
-" TODO: implementar función abyss#highlighter() a los 'vim script highlighting'
+" VIM SCRIPT: {{{
+highlight! link vimLineComment Comment
+highlight! link vimCommentTitle vimLineComment
 
-"" VIM SCRIPT: {{{
-"call abyss#highlighter("vimLineComment", s:midblue, "", "", "", s:is_italic_comments_enabled, "")
-"call abyss#highlighter("vimCommentTitle", s:heavyyellow, "", "", "", s:is_italic_comments_enabled . s:is_underline_enabled, "")
-"call abyss#highlighter("vimCommentTitle", s:heavyyellow, "", "", "", s:is_italic_comments_enabled . s:is_underline_enabled, "")
-"
-"call abyss#highlighter("vimIsCommand", s:purple, "", "", "", "", "")
-"call abyss#highlighter("vimCommand", s:purple, "", "", "", "", "")
-"call abyss#highlighter("vimMap", s:purple, "", "", "", "", "")
-"call abyss#highlighter("vimUserCmd", s:purple, "", "", "", "", "")
-"
-"call abyss#highlighter("vimNotFunc", s:fg, "", "", "", "", "")
-"call abyss#highlighter("vimFunc", s:yellow, "", "", "", "", "")
-"call abyss#highlighter("vimUserFunc", s:yellow, "", "", "", "", "")
-"call abyss#highlighter("vimFuncName", s:yellow, "", "", "", "", "")
-"call abyss#highlighter("vimFuncBody", s:yellow, "", "", "", "", "")
-"call abyss#highlighter("vimFunction", s:yellow, "", "", "", "", "")
-"call abyss#highlighter("vimFuncSID", s:yellow, "", "", "", "", "")
-"call abyss#highlighter("vimFuncKey", s:purple, "", "", "", "", "")
-"call abyss#highlighter("vimFuncVar", s:shinyblue, "", "", "", s:is_italic_enabled, "")
-"
-"call abyss#highlighter("vimLet", s:fg, "", "", "", "", "")
-"call abyss#highlighter("vimVar", s:shinyblue, "", "", "", s:is_italic_enabled, "")
-"
-"call abyss#highlighter("vimParenSep", s:fg, "", "", "", "", "")
-"call abyss#highlighter("vimOperParen", s:fg, "", "", "", "", "")
-"
-"call abyss#highlighter("vimString", s:darkgreen, "", "", "", "", "")
-"
-"call abyss#highlighter("vimFTOption", s:heavyyellow, "", "", "", "", "")
-"call abyss#highlighter("vimSynType", s:heavyyellow, "", "", "", "", "")
-"call abyss#highlighter("vimExecute", s:heavyyellow, "", "", "", "", "")
-"
-"call abyss#highlighter("vimOption", s:fg, "", "", "", "", "")
-"
-"call abyss#highlighter("vimMapMod", s:lowgrey, "", "", "", "", "")
-"call abyss#highlighter("vimBracket", s:lowgrey, "", "", "", "", "")
-"call abyss#highlighter("vimMapModKey", s:yellow, "", "", "", "", "")
-"
-"call abyss#highlighter("vimSet", s:fg, "", "", "", "", "")
-"call abyss#highlighter("vimSetEqual", s:fg, "", "", "", "", "")
-"" }}}
+call abyss#highlighter("vimCommand", s:attr_none, s:none, s:purple, s:sp_none)
+highlight! link vimIsCommand vimCommand
+highlight! link vimMap vimCommand
+highlight! link vimUserCmd vimCommand
 
-" TODO: implementar función abyss#highlighter() a los 'gitcommit highlighting'
+call abyss#highlighter("vimNotFunc", s:attr_none, s:none, s:fg, s:sp_none)
 
-"" GITCOMMIT: {{{
-"call abyss#highlighter("gitcommitFirstLine", s:heavyyellow, "", "", "", s:is_underline_enabled, "")
-"call abyss#highlighter("gitcommitSummary", s:heavyyellow, "", "", "", s:is_underline_enabled, "")
-"call abyss#highlighter("gitcommitComment", s:midblue, "", "", "", s:is_italic_comments_enabled, "")
-"call abyss#highlighter("gitcommitHeader", s:heavyyellow, "", "", "", s:is_underline_enabled, "")
-"call abyss#highlighter("gitcommitBranch", s:pink, "", "", "", "", "")
-"call abyss#highlighter("gitcommitOnBranch", s:midblue, "", "", "", s:is_italic_comments_enabled, "")
-"call abyss#highlighter("gitcommitSelectedType", s:yellow, "", "", "", "", "")
-"" }}}
+call abyss#highlighter("vimFunc", s:attr_none, s:none, s:yellow, s:sp_none)
+highlight! link vimUserFunc vimFunc
+highlight! link vimFuncName vimFunc
+highlight! link vimFunction vimFunc
+highlight! link vimFuncSID vimFunc
 
-" TODO: implementar función abyss#highlighter() a los 'editorconfig highlighting'
+highlight! link vimFuncKey vimCommand
+"call abyss#highlighter("vimFuncKey", s:attr_none, s:none, s:purple, s:sp_none)
+call abyss#highlighter("vimFuncVar", s:is_italic_enabled, s:none, s:shinyblue, s:sp_none)
 
-"" EditorConfig: {{{
-"call abyss#highlighter("dosiniHeader", s:lowgrey, "", "", "", "", "")
-"call abyss#highlighter("dosiniLabel", s:lowgrey, "", "", "", "", "")
-"call abyss#highlighter("dosiniNumber", s:pink, "", "", "", "", "")
-"call abyss#highlighter("dosiniValue", s:pink, "", "", "", "", "")
-"" }}}
+highlight! link vimLet vimNotFunc
+highlight! link vimVar vimFuncVar
 
-" TODO: implementar función abyss#highlighter() a los 'tmux highlighting'
+highlight! link vimParenSep vimNotFunc
+highlight! link vimOperParen vimNotFunc
 
-"" TMUX: {{{
-"call abyss#highlighter("tmuxCommands", s:purple, "", "", "", "", "")
-"call abyss#highlighter("tmuxFlags", s:lowgrey, "", "", "", "", "")
-"call abyss#highlighter("tmuxOptions", s:yellow, "", "", "", "", "")
-"call abyss#highlighter("tmuxString", s:darkgreen, "", "", "", "", "")
-"call abyss#highlighter("tmuxFormatString", s:lightgrey, "", "", "", "", "")
-"call abyss#highlighter("tmuxEnums", s:pink, "", "", "", "", "")
-"call abyss#highlighter("tmuxNumber", s:pink, "", "", "", "", "")
-"" }}}
+highlight! link vimString String
+
+highlight! link vimFTOption Type
+highlight! link vimSynType Type
+
+call abyss#highlighter("vimFuncBody", s:attr_none, s:none, s:heavyyellow, s:sp_none)
+highlight! link vimExecute vimFuncBody
+
+highlight! link vimOption vimNotFunc
+
+call abyss#highlighter("vimMapMod", s:attr_none, s:none, s:lowgrey, s:sp_none)
+highlight! link vimBracket vimMapMod
+
+highlight! link vimMapModKey vimFunc
+
+highlight! link vimSet vimNotFunc
+highlight! link vimSetEqual vimNotFunc
+" }}}
+
+" GITCOMMIT: {{{
+highlight! link gitcommitFirstLine Type
+highlight! link gitcommitSummary Type
+highlight! link gitcommitHeader Type
+
+call abyss#highlighter("gitcommitComment", s:is_italic_comments_enabled, s:none, s:midblue, s:sp_none)
+highlight! link gitcommitOnBranch gitcommitComment
+
+call abyss#highlighter("gitcommitBranch", s:attr_none, s:none, s:pink, s:sp_none)
+call abyss#highlighter("gitcommitSelectedType", s:attr_none, s:none, s:yellow, s:sp_none)
+" }}}
+
+" EditorConfig: {{{
+call abyss#highlighter("dosiniHeader", s:attr_none, s:none, s:lowgrey, s:sp_none)
+highlight! link dosiniLabel dosiniHeader
+
+highlight! link dosiniNumber Number
+highlight! link dosiniValue Number
+" }}}
+
+" TMUX: {{{
+highlight! link tmuxCommands Structure
+
+highlight! link tmuxEnums Number
+highlight! link tmuxNumber Number
+
+highlight! link tmuxString String
+
+call abyss#highlighter("tmuxFlags", s:attr_none, s:none, s:lowgrey, s:sp_none)
+call abyss#highlighter("tmuxOptions", s:attr_none, s:none, s:yellow, s:sp_none)
+call abyss#highlighter("tmuxFormatString", s:attr_none, s:none, s:lightgrey, s:sp_none)
+" }}}
