@@ -1,5 +1,9 @@
 # abyss.vim
+
+**WARNING: This repository is deprecated, use [abyss.nvim](https://github.com/barrientosvctor/abyss.nvim) instead.**
+
 The port of Visual Studio Code's Abyss colorscheme for Vim.
+
 ![Abyss.vim preview](/screenshots/abyss-preview.png)
 
 ## Installation
